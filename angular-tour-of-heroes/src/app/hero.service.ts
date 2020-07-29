@@ -11,6 +11,7 @@ import { Observable, of } from 'rxjs';
 })
 export class HeroService {
   getHeroes(): Observable<Hero[]> {
+    this.messageService.add('HeroService: fetched heroes');
     return of(HEROES)
   }
   constructor(private messageService: MessageService) { }
