@@ -11,13 +11,17 @@ import { HttpClient } from '@angular/common/http';
 export class BanroomComponent implements OnInit {
   room_id = "AAAAA";
   user_id: string;
+  creator: string;
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private readonly router: Router
   ) {
     this.http.get('/api/v1/generate_uid').subscribe((data:any) => {
+      console.log(data);
       this.user_id = data.guid;
+      this.creator = data.creator;
     }, error => {
       console.log("There was an error generating proper GUID on the server", error);
     });
