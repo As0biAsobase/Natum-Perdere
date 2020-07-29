@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute,Router } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-banroom',
@@ -9,10 +10,18 @@ import { ActivatedRoute,Router } from "@angular/router";
 })
 export class BanroomComponent implements OnInit {
   room_id = "AAAAA";
+  user_id: string;
   constructor(
     private route: ActivatedRoute,
+    private http: HttpClient,
     private readonly router: Router
-  ) { }
+  ) {
+    this.http.get('/api/v1/generate_uid').subscribe((data:any) => {
+      this.user_id = data.guid;
+    }, error => {
+      console.log("There was an error generating proper GUID on the server", error);
+    });
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
