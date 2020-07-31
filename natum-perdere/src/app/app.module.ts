@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { BanroomComponent } from './banroom/banroom.component';
+import { BanroomCreationComponent } from './banroom-creation/banroom-creation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BanroomComponent
+    BanroomComponent,
+    BanroomCreationComponent
   ],
   imports: [
     BrowserModule,
