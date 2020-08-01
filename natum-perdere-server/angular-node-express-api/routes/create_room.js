@@ -17,12 +17,13 @@ router.use(session({
 
 router.get('/', function(req, res, next) {
   var strUid = uid.sync(18);
-  mysql.query('SELECT * from banroom', (ex, rows) => {
+  console.log([ req.session.id, req.session.id, Math.random().toString(36).substr(2, 5)]);
+  mysql.query('INSERT INTO test.banroom (creator, user1, room_id) VALUES (?, ?, ?);', [ req.session.id, req.session.id, Math.random().toString(36).substr(2, 4)], (ex, rows) => {
       if (ex) {
         console.log(ex);
       } else {
-        creator_id = rows[0].creator;
-        console.log(creator_id);
+        // creator_id = rows[0].creator;
+        // console.log(creator_id);
       }
     });
 

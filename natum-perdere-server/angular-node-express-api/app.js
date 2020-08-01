@@ -10,15 +10,9 @@ var app = express();
 var users = require('./routes/users');
 
 var generate_uid = require('./routes/generate_uid');
+var create_room = require('./routes/create_room');
 var mysql = require('./db_connection').pool;
 
-// var test = function(req, res) {
-//      mysql.getConnection(function(err, conn){
-//          conn.query("select * from banroom", function(err, rows) {
-//               console.log(rows)
-//          })
-//      })
-// }
 mysql.query('SELECT 2*2 "value"', (ex, rows) => {
     if (ex) {
       console.log(ex);
@@ -28,6 +22,7 @@ mysql.query('SELECT 2*2 "value"', (ex, rows) => {
   });
 
 app.use('/api/v1/generate_uid', generate_uid);
+app.use('/api/v1/create_room', create_room);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser())
