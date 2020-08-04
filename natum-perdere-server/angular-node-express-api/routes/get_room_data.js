@@ -16,23 +16,30 @@ router.use(session({
   }));
 
 router.get('/', function(req, res, next) {
-  var strUid = uid.sync(18);
-  console.log([ req.session.id, req.session.id, Math.random().toString(36).substr(2, 5)]);
-
- room_id = Math.random().toString(36).substr(2, 4);
-
-  mysql.query('INSERT INTO test.banrooms (creator, user1, room_id) VALUES (?, ?, ?);', [ req.session.id, req.session.id, room_id], (ex, rows) => {
+  var decks1 = [];
+  var decks2 = []
+  mysql.query('SELECT * from banroom', (ex, rows) => {
       if (ex) {
         console.log(ex);
       } else {
-        // creator_id = rows[0].creator;
-        // console.log(creator_id);
+        creator_id = rows[0].creator;
+
+        decks1.push(rows[0].deck_1_1);
+        decks1.push(rows[0].deck_1_2);
+        decks1.push(rows[0].deck_1_3);
+        console.log(decks1);
+
+        decks1.push(rows[0].deck_2_1);
+        decks1.push(rows[0].deck_2_2);
+        decks1.push(rows[0].deck_2_3);
+
+        console.log(creator_id);
       }
     });
 
   res.setHeader('Content-Type', 'application/json');
 
-  res.end(JSON.stringify({guid: strUid, room_id: room_id}));
+  res.end(JSON.stringify({decks1: decks1, creator: req.session.id}));
 
 
   // database = req.db;

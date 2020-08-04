@@ -22,6 +22,7 @@ export class BanroomCreationComponent implements OnInit {
   createRoomFunction() {
     this.http.get('/api/v1/create_room').subscribe((data:any) => {
       console.log(data);
+      this.router.navigate([data["room_id"]])
     }, error => {
       console.log("There was an error generating proper GUID on the server", error);
     });

@@ -18,7 +18,7 @@ export class BanroomComponent implements OnInit {
     private http: HttpClient,
     private readonly router: Router
   ) {
-    this.http.get('/api/v1/generate_uid').subscribe((data:any) => {
+    this.http.get('/api/v1/get_room_data').subscribe((data:any) => {
       console.log(data);
       this.user_id = data.guid;
       this.creator = data.creator;
