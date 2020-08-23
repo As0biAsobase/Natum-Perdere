@@ -17,6 +17,7 @@ export class BanroomCreationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
   createRoomFunction() {
