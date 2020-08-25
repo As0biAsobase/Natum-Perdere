@@ -9,6 +9,7 @@ import { DocumentComponent } from './document/document.component';
 import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
 import { BanroomCreationComponent } from './banroom-creation/banroom-creation.component';
 import { BanroomComponent } from './banroom/banroom.component';
+import { AppRoutingModule } from './app-routing.module';
 
 const config: SocketIoConfig = { url: 'http://localhost:4444', options: {}};
 

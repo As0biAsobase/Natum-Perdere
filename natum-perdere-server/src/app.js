@@ -2,18 +2,22 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http)
 
+var mysql = require('mysql');
+
 const rooms = {}
 
 io.on("connection", socket => {
   let previousId;
-  const safeJoin = currentId => {
+  var connectionLimit = 2
+  const safeJoin = room => {
     socket.leave(previousId);
-    socket.join(currentId);
-    previousId = currentId;
+    socket.join(room.id);
+    previousId = room.id;
   };
 
   socket.on("getRoom", room => {
-      safeJoin(room.id);
+      safeJoin(room);
+      console.log(socket.id);
 
       socket.emit("banroom", rooms[room.id]);
   });

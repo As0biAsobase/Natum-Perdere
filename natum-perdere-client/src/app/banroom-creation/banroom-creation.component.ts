@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
   styleUrls: ['./banroom-creation.component.scss']
 })
 export class BanroomCreationComponent implements OnInit {
+  private _roomSub: Subscription;
+
   constructor(
     private banroomService: BanroomService,
     private readonly router: Router
@@ -19,7 +21,12 @@ export class BanroomCreationComponent implements OnInit {
   ngOnInit(): void {}
 
   createRoomFunction() {
-    this.banroomService.newRoom();
+
+    this._roomSub =   this.banroomService.newRoom()
+      .subscribe( room => {
+        console.log(room.id);
+        this.router.navigate([room.id])
+      });
     // this.router.navigate();
   }
 

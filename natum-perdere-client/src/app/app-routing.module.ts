@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
+import { BanroomCreationComponent } from "./banroom-creation/banroom-creation.component";
+import { BanroomComponent } from './banroom/banroom.component';
 
+const routes: Routes = [
+  { path: ":ban_id", component: BanroomComponent },
+  { path: '', component: BanroomCreationComponent }
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
