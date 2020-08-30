@@ -2,7 +2,7 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http)
 
-var mysql = require('mysql');
+var db = require('./db_connection');
 
 const rooms = {}
 
