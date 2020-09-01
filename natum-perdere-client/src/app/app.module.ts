@@ -9,6 +9,7 @@ import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
 import { BanroomCreationComponent } from './banroom-creation/banroom-creation.component';
 import { BanroomComponent } from './banroom/banroom.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CardViewComponent } from './card-view/card-view.component';
 
 const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
 
@@ -16,7 +17,8 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
   declarations: [
     AppComponent,
     BanroomCreationComponent,
-    BanroomComponent
+    BanroomComponent,
+    CardViewComponent
   ],
   imports: [
     BrowserModule,

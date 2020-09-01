@@ -1,38 +1,18 @@
-const MongoClient = require('mongodb').MongoClient  
+const { MongoClient } = require('mongodb');
+
 
 class Connection {
-    constructor() {
-      this.client = new MongoClient('mongodb://localhost:27017');
-      this.db = null;
-      this.options = {
-          bufferMaxEntries:   0,
-          useNewUrlParser:    true,
-          useUnifiedTopology: true,
-      }
-    }
+  constructor() {
+    const url = `mongodb://localhost:27017`;
 
-    static connectToMongo(connection) {
-      connection.client.connect(function(err) {
-        // assert.equal(null, err);
-        console.log("Connected!")
+    this.client = new MongoClient(url,  { useNewUrlParser: true, useUnifiedTopology: true });
+  }
+  async init() {
+    await this.client.connect();
+    console.log('connected');
 
-        conection.db = connection.client.db("natum-perdere");
-
-        connection.client.close();
-      });
-        // if ( this.db ) return Promise.resolve(this.db)
-        // return MongoClient.connect(this.url, this.options)
-        //     .then(client => this.client = client)
-    }
+    this.db = this.client.db("natum-perdere");
+  }
 }
 
-// Connection.client = new MongoClient('mongodb://localhost:27017');
-// Connection.db = null;
-// // Connection.url = 'mongodb://localhost:27017'
-// Connection.options = {
-//     bufferMaxEntries:   0,
-//     useNewUrlParser:    true,
-//     useUnifiedTopology: true,
-// }
-
-module.exports = { Connection }
+module.exports = new Connection();

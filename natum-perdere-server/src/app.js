@@ -2,18 +2,21 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http)
 
-const { Connection } = require('./db_connection');
-
+const mongo = require('./db_connection');
 
 const rooms = {}
 
+async function start() {
+  await mongo.init();
+}
+
+start();
+// async function end() {
+//   mongo.client.close();
+//   console.log("Connection closed!");
+// }
+
 io.on("connection", socket => {
-  Connection.connectToMongo();
-  // client.open(client => {
-  //   var db = client.db("natum-perdere");
-  //   client.close();
-  // });
-  // let db = Connection.client.db("natum-perdere")
 
   let previousId;
   var connectionLimit = 2
@@ -25,11 +28,6 @@ io.on("connection", socket => {
 
   socket.on("getRoom", room => {
       safeJoin(room);
-      Connection.db.collection("cardsCollection").find( {"name" : "Люкс"}).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        Connection.client.close();
-      });
       console.log(socket.id);
 
       socket.emit("banroom", rooms[room.id]);
@@ -44,8 +42,16 @@ io.on("connection", socket => {
     socket.emit("banroom", room);
   });
 
+  socket.on("getCard", inputData => {
+    console.log(inputData["cardCode"]);
+    mongo.db.collection("cardsCollection").find( {cardCode : inputData["cardCode"]}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result[0]);
+      socket.emit("card", result[0])
+    });
+  });
+
   io.emit("banrooms", Object.keys(rooms))
 });
-
 
 http.listen(4444);
