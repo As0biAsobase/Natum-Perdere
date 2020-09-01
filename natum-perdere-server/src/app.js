@@ -2,11 +2,19 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http)
 
-var db = require('./db_connection');
+const { Connection } = require('./db_connection');
+
 
 const rooms = {}
 
 io.on("connection", socket => {
+  Connection.connectToMongo();
+  // client.open(client => {
+  //   var db = client.db("natum-perdere");
+  //   client.close();
+  // });
+  // let db = Connection.client.db("natum-perdere")
+
   let previousId;
   var connectionLimit = 2
   const safeJoin = room => {
@@ -17,6 +25,11 @@ io.on("connection", socket => {
 
   socket.on("getRoom", room => {
       safeJoin(room);
+      Connection.db.collection("cardsCollection").find( {"name" : "Люкс"}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        Connection.client.close();
+      });
       console.log(socket.id);
 
       socket.emit("banroom", rooms[room.id]);
@@ -34,34 +47,5 @@ io.on("connection", socket => {
   io.emit("banrooms", Object.keys(rooms))
 });
 
-http.listen(4444);
 
-// const documents = {}
-//
-// io.on("connection", socket => {
-//   let previousId;
-//   const safeJoin = currentId => {
-//     socket.leave(previousId);
-//     socket.join(currentId);
-//     previousId = currentId;
-//   };
-//
-//   socket.on("getDoc", docId => {
-//     safeJoin(docId);
-//     socket.emit("document", documents[docId])
-//   });
-//
-//   socket.on("addDoc", doc => {
-//     documents[doc.id] = doc;
-//     safeJoin(doc.id);
-//     io.emit("documents", Object.keys(documents));
-//     socket.emit("document", doc);
-//   });
-//
-//   socket.on("editDoc", doc => {
-//     documents[doc.id] = doc;
-//     socket.to(doc.id).emit("document", doc);
-//   });
-//
-//   io.emit("documents", Object.keys(documents));
-// });
+http.listen(4444);
