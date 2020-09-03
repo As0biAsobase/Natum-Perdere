@@ -19,6 +19,17 @@ export class CardService {
     return this.getSocketDataObservable();
   }
 
+  getAssociatedCards(associated_cards: Array<string>): Observable<any> {
+    this.socket.emit('getAssociatedCards', {associated_cards : associated_cards});
+
+    this.socket.on('associated_cards', associated_cards => {
+      console.log(associated_cards);
+      this.observer.next(associated_cards);
+    });
+
+    return this.getSocketDataObservable();
+  }
+
   getSocketDataObservable(): Observable<any> {
     return new Observable(observer => {
         this.observer = observer;

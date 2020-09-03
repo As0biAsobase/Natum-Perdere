@@ -1,4 +1,25 @@
-<p>card-view works!</p>
-<div *ngIf="dataRecieved">
-{{ card.name }}
+<div *ngIf="dataRecieved" class="card-info-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-10">
+        <div class="card-name-big">
+          <p class="text-center">{{ card.name }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <img [src]="card_image" class="img-fluid card-view-image"/>
+      </div>
+      <div class="col-md-6 offset-md-1">
+        <span class="card-params">
+          Редкость: {{ card.rarity }}
+          Тип: {{ card.type }}
+          Регион: {{ card.region }}
+        </span>
+        <hr>
+        {{ card.description }}
+      </div>
+    </div>
+  </div>
 </div>

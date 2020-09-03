@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+// F7F8F7 - text
+// 987F88 - accents
+// 8E8A92 - main??
+// 6A8B9F - accents
+// 384053 - bg
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+html {
+  background-color: #384053;
+  color: #F7F8F7;
+}
+
+hr {
+  border-color: #987F88;
+}
+
+.card-info-container {
+  background-color: #384053;
+  color: #F7F8F7;
+}

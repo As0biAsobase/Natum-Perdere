@@ -1,0 +1,51 @@
+@import "node_modules/bootstrap/scss/_functions";
+@import "node_modules/bootstrap/scss/_variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
+.card-view-image {
+  max-width: 20vw;
+}
+
+.card-name-big {
+    font-family: 'Roboto', sans-serif;
+}
+
+@include media-breakpoint-down(sm) {
+  .card-name-big {
+    font-size: 1rem;
+  }
+
+  .card-view-image {
+    max-width: 90vw;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .card-name-big {
+    font-size: 1.5rem;
+  }
+
+  .card-view-image {
+    max-width: 60vw;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .card-name-big {
+    font-size: 1.5rem;
+  }
+
+  .card-view-image {
+    max-width: 100%;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .card-name-big {
+    font-size: 2.5rem;
+  }
+
+  .card-view-image {
+    max-width: 20vw;
+  }
+}

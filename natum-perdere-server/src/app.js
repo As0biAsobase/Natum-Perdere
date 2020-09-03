@@ -11,10 +11,6 @@ async function start() {
 }
 
 start();
-// async function end() {
-//   mongo.client.close();
-//   console.log("Connection closed!");
-// }
 
 io.on("connection", socket => {
 
@@ -51,7 +47,42 @@ io.on("connection", socket => {
     });
   });
 
+  socket.on("getAssociatedCards", async function(inputData) {
+    var associatedCardsPromise = (inputData) => (
+        new Promise((resolve, reject) => {
+          mongo.db.collection("cardsCollection").find( { cardCode : { $in: inputData["associated_cards"] } } ).toArray(function(err, result) {
+            if (err) throw err;
+            console.log("Got db data " + result.length);
+            resolve(result);
+          });
+        })
+    );
+
+    var callAssociatedCardsPromise = async (inputData) => {
+        var result = await (associatedCardsPromise(inputData));
+        return result;
+        console.log("Called promise" + result);
+    };
+
+    callAssociatedCardsPromise(inputData).then(function(result) {
+      console.log("Returned data " + result);
+      socket.emit("associated_cards", result);
+    });
+  });
+
   io.emit("banrooms", Object.keys(rooms))
 });
 
 http.listen(4444);
+
+
+
+async function getAssociatedCards(inputData) {
+  result = await mongo.db.collection("cardsCollection").find( { cardCode : { $in: inputData["associated_cards"] } } ).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result.length);
+    return result;
+  });
+  // console.log("HHHH" + result.length);
+  return result;
+}

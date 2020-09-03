@@ -10,6 +10,8 @@ import { BanroomCreationComponent } from './banroom-creation/banroom-creation.co
 import { BanroomComponent } from './banroom/banroom.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CardViewComponent } from './card-view/card-view.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
 
@@ -18,7 +20,9 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
     AppComponent,
     BanroomCreationComponent,
     BanroomComponent,
-    CardViewComponent
+    CardViewComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
