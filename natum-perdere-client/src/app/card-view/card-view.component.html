@@ -12,9 +12,9 @@
         <div class="card-images-container">
           <img [src]="card.assets[0].gameAbsolutePath" class="img-fluid card-view-image card-image-center"/>
           <div *ngFor="let card of cards_left">
-            <img [src]="card.assets[0].gameAbsolutePath" (click)="moveRightFunction()" class="img-fluid card-view-image card-image-left"/>
+            <img [src]="card.assets[0].gameAbsolutePath" (click)="moveLeftFunction()" class="img-fluid card-view-image card-image-left"/>
           </div>
-          <div *ngFor="let card of cards_right.slice().reverse()">
+          <div *ngFor="let card of cards_right">
             <img [src]="card.assets[0].gameAbsolutePath" (click)="moveRightFunction()" class="img-fluid card-view-image card-image-right"/>
           </div>
         </div>

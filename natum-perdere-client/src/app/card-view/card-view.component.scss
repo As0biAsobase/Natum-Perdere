@@ -16,6 +16,8 @@
 
 .card-image-left {
   filter: brightness(50%);
+  max-width: 15vw;
+  transform: scale(0.8);
   position: absolute;
   top: 10px;
   left: -50px;
@@ -24,6 +26,8 @@
 
 .card-image-right {
   filter: brightness(50%);
+  max-width: 15vw;
+  transform: scale(0.8);
   position: absolute;
   top: 10px;
   left: 50px;
@@ -110,7 +114,7 @@
   }
 
   .card-view-image {
-    max-width: 20vw;
+    max-width: 15vw;
   }
 
   .card-image-left {

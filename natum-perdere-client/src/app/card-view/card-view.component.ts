@@ -58,7 +58,8 @@ export class CardViewComponent implements OnInit {
               this.associated_cards = associated_cards;
 
               //associated_cards received, can add them to array
-              this.associated_cards.forEach(card => this.cards_right.push(card));
+              // this.associated_cards.forEach(card => this.cards_right.push(card));
+              this.cards_right = this.associated_cards.slice().reverse();
               console.log(this.cards_right);
             });
         }
@@ -68,7 +69,13 @@ export class CardViewComponent implements OnInit {
 
   moveRightFunction() {
     this.cards_left.push(this.card);
-    this.card = this.cards_right.shift();
+    this.card = this.cards_right.pop();
     console.log(this.cards_right);
+  }
+
+  moveLeftFunction() {
+    this.cards_right.push(this.card);
+    this.card = this.cards_left.pop();
+    console.log(this.cards_left);
   }
 }
