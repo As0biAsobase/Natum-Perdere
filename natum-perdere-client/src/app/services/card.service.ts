@@ -23,7 +23,7 @@ export class CardService {
     this.socket.emit('getAssociatedCards', {associated_cards : associated_cards});
 
     this.socket.on('associated_cards', associated_cards => {
-      console.log(associated_cards);
+      //  console.log(associated_cards);
       this.observer.next(associated_cards);
     });
 

@@ -15,10 +15,14 @@ export class CardViewComponent implements OnInit {
 
   //card object
   card;
-  //card image
-  card_image;
   //associated cards
   associated_cards = [];
+
+  //queue of all relevant cards displayed on the right side
+  cards_right = []
+
+  //queue of all cards displayed on the left
+  cards_left = []
 
   //This is a workaround, need to fix to ensure correct async, look into Promises, Pipes
   dataRecieved = false;
@@ -38,10 +42,12 @@ export class CardViewComponent implements OnInit {
       .pipe(take(1))
       .subscribe(card => {
         this.card = card;
-        this.card_image = card.assets[0].gameAbsolutePath;
 
         console.log(this.card);
         this.dataRecieved = true;
+
+        //construct all cards array by adding main cards and then adding all related if we got any
+        this.cards_right.push(card);
 
         console.log(card.associatedCardRefs);
         if (card.associatedCardRefs.length > 0) {
@@ -50,11 +56,19 @@ export class CardViewComponent implements OnInit {
             .subscribe(associated_cards => {
               console.log(associated_cards);
               this.associated_cards = associated_cards;
+
+              //associated_cards received, can add them to array
+              this.associated_cards.forEach(card => this.cards_right.push(card));
+              console.log(this.cards_right);
             });
         }
-        console.log(this.associated_cards);
-      });
 
+      });
   }
 
+  moveRightFunction() {
+    this.cards_left.push(this.card);
+    this.card = this.cards_right.shift();
+    console.log(this.cards_right);
+  }
 }
