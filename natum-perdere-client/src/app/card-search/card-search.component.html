@@ -1,0 +1,14 @@
+<div class="searchbar-container justify-content-center">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar">
+      <input class="search_input" type="text" [(ngModel)]="term" name="" placeholder="Поиск...">
+      <a href="#" class="search_icon"><fa-icon [icon]="faSearch"></fa-icon></a>
+
+      <div *ngFor = "let card of allCards | filter:term | slice:0:5">
+        <div>
+          {{ card.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

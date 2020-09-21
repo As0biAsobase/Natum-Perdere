@@ -67,15 +67,20 @@ export class CardViewComponent implements OnInit {
       });
   }
 
+  //moving cards "carousel" left and right, using queues
   moveRightFunction() {
-    this.cards_left.push(this.card);
-    this.card = this.cards_right.pop();
+    if (this.cards_right.length > 0) {
+      this.cards_left.push(this.card);
+      this.card = this.cards_right.pop();
+    }
     console.log(this.cards_right);
   }
 
   moveLeftFunction() {
-    this.cards_right.push(this.card);
-    this.card = this.cards_left.pop();
+    if (this.cards_left.length > 0) {
+      this.cards_right.push(this.card);
+      this.card = this.cards_left.pop();
+    }
     console.log(this.cards_left);
   }
 }

@@ -38,6 +38,15 @@ io.on("connection", socket => {
     socket.emit("banroom", room);
   });
 
+  socket.on("getAllCards", function() {
+    mongo.db.collection("cardsCollection").find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result.length);
+        console.log(result[0]);
+        socket.emit("allCards", result);
+    });
+  });
+
   socket.on("getCard", inputData => {
     console.log(inputData["cardCode"]);
     mongo.db.collection("cardsCollection").find( {cardCode : inputData["cardCode"]}).toArray(function(err, result) {

@@ -10,6 +10,16 @@ export class CardService {
   card;
   observer;
 
+  getAllCards(): Observable<any> {
+    this.socket.emit("getAllCards", {});
+
+    this.socket.on("allCards", allCards => {
+      
+      this.observer.next(allCards)
+    })
+    return this.getSocketDataObservable();
+  }
+
   getCard(cardCode: string): Observable<any> {
     this.socket.emit('getCard', {cardCode : cardCode});
 
