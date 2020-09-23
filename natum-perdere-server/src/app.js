@@ -1,6 +1,15 @@
 const app = require("express")();
-const http = require("http").Server(app);
-const io = require("socket.io")(http)
+var fs = require( 'fs' );
+
+// const http = require("http").Server(app);
+var https = require("https");
+var server = https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/perdere.ru/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/perdere.ru/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/perdere.ru/chain.pem'),
+     requestCert: false,     rejectUnauthorized: false },app);
+
+const io = require("socket.io")(server)
 
 const mongo = require('./db_connection');
 
@@ -82,10 +91,6 @@ io.on("connection", socket => {
   io.emit("banrooms", Object.keys(rooms))
 });
 
-http.listen(4444);
-
-
-
 async function getAssociatedCards(inputData) {
   result = await mongo.db.collection("cardsCollection").find( { cardCode : { $in: inputData["associated_cards"] } } ).toArray(function(err, result) {
     if (err) throw err;
@@ -95,3 +100,5 @@ async function getAssociatedCards(inputData) {
   // console.log("HHHH" + result.length);
   return result;
 }
+
+server.listen(4444);

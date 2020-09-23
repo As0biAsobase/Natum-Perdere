@@ -18,6 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CardSearchComponent } from './card-search/card-search.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MainPageComponent } from './main-page/main-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
 
@@ -29,7 +31,9 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
     CardViewComponent,
     HeaderComponent,
     FooterComponent,
-    CardSearchComponent
+    CardSearchComponent,
+    MainPageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

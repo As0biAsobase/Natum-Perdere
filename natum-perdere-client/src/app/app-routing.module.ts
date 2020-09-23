@@ -7,11 +7,18 @@ import { BanroomComponent } from './banroom/banroom.component';
 import { CardSearchComponent } from './card-search/card-search.component';
 import { CardViewComponent } from './card-view/card-view.component';
 
+import { MainPageComponent } from './main-page/main-page.component';
+
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+
 const routes: Routes = [
+  { path: "", component: MainPageComponent},
   { path: "card", component: CardSearchComponent},
   { path: "ban/:ban_id", component: BanroomComponent },
   { path: 'banroom', component: BanroomCreationComponent },
   { path: 'card/:card_code', component: CardViewComponent },
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

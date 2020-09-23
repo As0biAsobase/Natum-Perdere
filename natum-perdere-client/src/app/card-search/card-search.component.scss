@@ -1,3 +1,7 @@
+@import "node_modules/bootstrap/scss/_functions";
+@import "node_modules/bootstrap/scss/_variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
 .searchbar-container {
   background-color: #384053;
   padding: 20px;
@@ -17,22 +21,9 @@
    border: 0;
    outline: 0;
    background: none;
-   width: 0;
    caret-color: #987F88;
    line-height: 40px;
    transition: width 0.4s linear;
-}
-
-.searchbar:hover > .search_input {
-   padding: 0 10px;
-   width: 450px;
-   caret-color: #987F88;
-   transition: width 0.4s linear;
-}
-
-.searchbar:hover > .search_icon {
-   background-color: #987F88;
-   color: #6A8B9F;
 }
 
 .search_icon {
@@ -43,6 +34,30 @@
    justify-content: center;
    align-items: center;
    border-radius: 50%;
-   color:white;
+   color: #F7F8F7;
    text-decoration:none;
+}
+
+@include media-breakpoint-down(sm) {
+  .search_input {
+    width: 80vw;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .search_input {
+    width: 75vw;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .search_input {
+    width: 60vw;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .search_input {
+    width: 50vw;
+  }
 }
