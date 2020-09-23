@@ -4,6 +4,8 @@
 // 8E8A92 - main??
 // 6A8B9F - accents
 // 384053 - bg
+// #1A1208 - dark text
+// https://colors.muz.li/palette/F7F8F7/987f88/8e8a92/6a8b9f/384053
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
 
@@ -21,6 +23,19 @@ body {
 
 hr {
   border-color: #987F88;
+}
+
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.black-link {
+  color: black;
+}
+
+.black-link:hover {
+  color: black;
 }
 
 .card-info-container {

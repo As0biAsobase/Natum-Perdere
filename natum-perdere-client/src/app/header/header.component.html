@@ -1,3 +1,18 @@
-<nav class="navbar navbar-light natum-navbar">
-  <span class="navbar-brand mb-0 h1">Natum</span>
+<nav id="natum-navbar" class="navbar navbar-light natum-navbar">
+  <span id="natum-navbar-brand" class="navbar-brand mb-0 h1">
+    <a class="black-link"href="">
+      <img class="logo-image" src="assets/img/square_old_logo.png">
+      <span id="natum-name">
+        Natum
+        <span id="meme-of-a-day">
+          {{ randomPhrase }}
+        </span>
+      </span>
+    </a>
+  </span>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="https://vk.com/natum_perdere"><i class="fab fa-vk vk-nav-icon"></i></a>
+    </li>
+  </ul>
 </nav>

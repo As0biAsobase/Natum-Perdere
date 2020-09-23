@@ -1,3 +1,70 @@
+$accentColor: #987f88;
+$mainColor: #8f8a93;
+
 .natum-navbar {
   background-color: #6A8B9F;
+}
+
+.logo-image {
+  height: 50px;
+  width: 50px;
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+
+  margin-right: 10px;
+}
+
+#natum-navbar {
+  padding: 0.2rem, 0.7rem;
+}
+
+#natum-navbar-brand {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+#natum-name {
+  font-size: 2rem;
+  margin-left: -15px;
+  color: #1A1208;
+  line-height: 2rem;
+  position: relative;
+  top: 5px;
+}
+
+#meme-of-a-day {
+  font-size: 0.8rem;
+}
+
+.logo-image:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.vk-nav-icon {
+  color: #384053;
+  font-size: 1.5rem;
+  position: relative;
+  top: 5px;
+  &:hover {
+    animation: icon3d 200ms infinite;
+  }
+}
+
+@keyframes icon3d {
+  0% {
+    text-shadow: 3px 2px $accentColor, -2px -3px $mainColor;
+  }
+  25% {
+    text-shadow: -2px -3px $accentColor, 3px 2px $mainColor;
+  }
+  50% {
+    text-shadow: 3px -2px $accentColor, -4px 2px $mainColor;
+  }
+  75% {
+    text-shadow: -4px -2px $accentColor, -3px -2px $mainColor;
+  }
+  100% {
+    text-shadow: -3px 0 $accentColor, 3px -2px $mainColor;
+  }
 }
