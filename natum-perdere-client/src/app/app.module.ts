@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
 
 import { BanroomCreationComponent } from './banroom-creation/banroom-creation.component';
@@ -21,6 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { CardFilterPipe } from './pipes/card-filter.pipe';
+
 const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
 
 @NgModule({
@@ -33,12 +35,13 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
     FooterComponent,
     CardSearchComponent,
     MainPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CardFilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    Ng2SearchPipeModule,
+    // Ng2SearchPipeModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
     FontAwesomeModule

@@ -1,6 +1,9 @@
 const app = require("express")();
 var fs = require( 'fs' );
 
+var ping_server = require('./routes/ping_server');
+var get_card_code = require('./routes/get_card_code');
+
 // const http = require("http").Server(app);
 var https = require("https");
 var server = https.createServer({
@@ -9,15 +12,19 @@ var server = https.createServer({
     ca: fs.readFileSync('/etc/letsencrypt/live/perdere.ru/chain.pem'),
      requestCert: false,     rejectUnauthorized: false },app);
 
-const io = require("socket.io")(server)
+const io = require("socket.io")(server);
 
 const mongo = require('./db_connection');
+app.locals.mongo = mongo;
 
 const rooms = {}
 
 async function start() {
   await mongo.init();
 }
+
+app.use('/api/v1/ping_server', ping_server);
+app.use('/api/v1/get_card_code', get_card_code);
 
 start();
 
@@ -48,7 +55,7 @@ io.on("connection", socket => {
   });
 
   socket.on("getAllCards", function() {
-    mongo.db.collection("cardsCollection").find({}).toArray(function(err, result) {
+    mongo.db.collection("cardsCollection").find({}).sort({ cost: 1}).toArray(function(err, result) {
         if (err) throw err;
         console.log(result.length);
         console.log(result[0]);
@@ -61,7 +68,7 @@ io.on("connection", socket => {
     mongo.db.collection("cardsCollection").find( {cardCode : inputData["cardCode"]}).toArray(function(err, result) {
       if (err) throw err;
       console.log(result[0]);
-      socket.emit("card", result[0])
+      socket.emit("card", result[0]);
     });
   });
 

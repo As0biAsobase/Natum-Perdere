@@ -38,6 +38,20 @@
    text-decoration:none;
 }
 
+.search-result-container {
+  background-color: #384053;
+}
+
+.search-card-img {
+  margin-top: 15px;
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+
+.search-card-img:hover {
+  transform: scale(1.05);
+}
+
 @include media-breakpoint-down(sm) {
   .search_input {
     width: 80vw;
