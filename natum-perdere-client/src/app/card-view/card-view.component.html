@@ -11,11 +11,13 @@
       <div class="col-md-4">
         <div class="card-images-container">
           <img [src]="card.assets[0].gameAbsolutePath" class="img-fluid card-view-image card-image-center mx-auto d-block"/>
-          <div *ngFor="let card of cards_left">
-            <img [src]="card.assets[0].gameAbsolutePath" (click)="moveLeftFunction()" class="img-fluid card-view-image card-image-left mx-auto d-block"/>
-          </div>
-          <div *ngFor="let card of cards_right">
-            <img [src]="card.assets[0].gameAbsolutePath" (click)="moveRightFunction()" class="img-fluid card-view-image card-image-right mx-auto d-block"/>
+          <div *ngIf="associated_cards.length > 0">
+            <div *ngFor="let card of cards_left">
+              <img [src]="card.assets[0].gameAbsolutePath" (click)="moveLeftFunction()" class="img-fluid card-view-image card-image-left mx-auto d-block"/>
+            </div>
+            <div *ngFor="let card of cards_right">
+              <img [src]="card.assets[0].gameAbsolutePath" (click)="moveRightFunction()" class="img-fluid card-view-image card-image-right mx-auto d-block"/>
+            </div>
           </div>
         </div>
       </div>
@@ -26,7 +28,17 @@
           Регион: {{ card.region }}
         </span>
         <hr>
-        {{ card.description }}
+        <div>
+        {{ card.descriptionRaw }}
+        </div>
+        <hr>
+        <div class="card-flavor-text">
+          {{ card.flavorText }}
+        </div>
+        <hr>
+        <div class="full-image-link">
+          <a href="{{ card.assets[0].fullAbsolutePath }}"> Фулл </a>
+        </div>
       </div>
     </div>
   </div>

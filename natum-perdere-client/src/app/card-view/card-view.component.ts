@@ -54,13 +54,12 @@ export class CardViewComponent implements OnInit {
           this.cardService.getAssociatedCards(card.associatedCardRefs)
             .pipe(take(1))
             .subscribe(associated_cards => {
-              console.log(associated_cards);
+              console.log(associated_cards.length);
               this.associated_cards = associated_cards;
 
               //associated_cards received, can add them to array
               // this.associated_cards.forEach(card => this.cards_right.push(card));
               this.cards_right = this.associated_cards.slice().reverse();
-              console.log(this.cards_right);
             });
         }
 

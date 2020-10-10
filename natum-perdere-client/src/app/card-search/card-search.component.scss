@@ -56,6 +56,11 @@
   .search_input {
     width: 80vw;
   }
+
+  .search_icon {
+    position: relative;
+    top: -40px;
+  }
 }
 
 @include media-breakpoint-up(sm) {

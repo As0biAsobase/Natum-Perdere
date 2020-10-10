@@ -10,7 +10,8 @@ export class HeaderComponent implements OnInit {
     "И всё-таки он вертится!",
     "кекв",
     "Хэ-хэ-хэ",
-    "Теперь банановый!"
+    "Теперь банановый!",
+    "Купи слона!"
   ];
 
   randomPhrase: string;

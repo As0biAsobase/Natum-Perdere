@@ -1,8 +1,12 @@
 const app = require("express")();
 var fs = require( 'fs' );
 
+var cors = require('cors');
+
 var ping_server = require('./routes/ping_server');
 var get_card_code = require('./routes/get_card_code');
+var get_leaderboard = require('./routes/get_leaderboard');
+var check_ru = require('./routes/check_ru');
 
 // const http = require("http").Server(app);
 var https = require("https");
@@ -23,8 +27,12 @@ async function start() {
   await mongo.init();
 }
 
+app.use(cors());
+
 app.use('/api/v1/ping_server', ping_server);
 app.use('/api/v1/get_card_code', get_card_code);
+app.use('/api/v1/get_leaderboard', get_leaderboard);
+app.use('/api/v1/check_ru', check_ru);
 
 start();
 

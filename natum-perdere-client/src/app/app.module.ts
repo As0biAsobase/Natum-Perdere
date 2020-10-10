@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
+import { HttpClientModule } from '@angular/common/http';
 
 import { BanroomCreationComponent } from './banroom-creation/banroom-creation.component';
 import { BanroomComponent } from './banroom/banroom.component';
@@ -21,7 +22,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+
 import { CardFilterPipe } from './pipes/card-filter.pipe';
+import { RegionFilterPipe } from './pipes/region-filter.pipe';
+
 
 const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
 
@@ -36,7 +41,9 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
     CardSearchComponent,
     MainPageComponent,
     PageNotFoundComponent,
-    CardFilterPipe
+    CardFilterPipe,
+    LeaderboardComponent,
+    RegionFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ const config: SocketIoConfig = { url: environment.serverUrl, options: {}};
     // Ng2SearchPipeModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
