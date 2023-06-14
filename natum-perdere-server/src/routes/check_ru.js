@@ -17,9 +17,6 @@ router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.send({isRu: isRu});
   });
-
-
-  //as
 });
 
 module.exports = router;

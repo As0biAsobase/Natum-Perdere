@@ -6,7 +6,6 @@ router.get('/', function(req, res, next) {
 
   mongo = req.app.locals.mongo;
 
-
   mongo.db.collection("cardsCollection").find( {name : req.query.name, collectible: true}).toArray(function(err, result) {
     if (err) throw err;
     console.log(result[0]);
@@ -15,9 +14,6 @@ router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.send({code: result[0].cardCode});
   });
-
-
-  //as
 });
 
 module.exports = router;

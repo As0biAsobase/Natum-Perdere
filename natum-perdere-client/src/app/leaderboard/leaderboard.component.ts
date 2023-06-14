@@ -56,8 +56,5 @@ export class LeaderboardComponent implements OnInit {
       this.players = this.previousPlayers;
       this.showingRu = false;
     }
-
-
   }
-
 }

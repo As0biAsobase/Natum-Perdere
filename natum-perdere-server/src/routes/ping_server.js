@@ -6,8 +6,7 @@ router.get('/', function(req, res, next) {
   // console.log(req.query.id);
 
   res.setHeader('Content-Type', 'application/json');
-  res.send({kekw: 'kekw'});
-  //as
+  res.send({meow: 'meow'});
 });
 
 module.exports = router;
